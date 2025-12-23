@@ -15,7 +15,7 @@ namespace Tools
                 {
                     lock (_lock)
                     {
-                        _instance = FindObjectOfType<T>() as T; //先去场景中找有没有这个类
+                        _instance = FindObjectOfType<T>(); //先去场景中找有没有这个类
                     
                         if (_instance == null)//如果没有，那么我们自己创建一个Gameobject然后给他加一个T这个类型的脚本，并赋值给instance;
                         {

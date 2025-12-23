@@ -1,51 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
 using Tools;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameInputManager : Singleton<GameInputManager>
+namespace Input
 {
-    private GameInputAction _gameInputAction;
-    
-    public Vector2 Movement => _gameInputAction.GameInput.Movement.ReadValue<Vector2>();
-    public Vector2 CameraLook => _gameInputAction.GameInput.CameraLook.ReadValue<Vector2>();
-    public bool Run => _gameInputAction.GameInput.Run.phase == InputActionPhase.Performed;
-    
-    public bool Climb => _gameInputAction.GameInput.Climb.triggered;
-    
-    public bool Grab => _gameInputAction.GameInput.Grab.triggered;
-    
-    public bool LAttack => _gameInputAction.GameInput.LAttack.triggered;
-    
-    public bool RAttack => _gameInputAction.GameInput.RAttack.triggered;
-    
-    public bool TakeOut => _gameInputAction.GameInput.TakeOut.triggered;
-    //按住
-    public bool Parry => _gameInputAction.GameInput.Parry.phase == InputActionPhase.Performed;
-
-    public bool ExecuteParry => _gameInputAction.GameInput.Parry.triggered;
-    
-    public bool LockEnemy => _gameInputAction.GameInput.LockEnemy.triggered;
-    
-    
-    
-    protected override void Awake()
+    public class GameInputManager : Singleton<GameInputManager>
     {
-        if (_gameInputAction == null)
+        private GameInputAction _gameInputAction;
+    
+        public Vector2 Movement => _gameInputAction.GameInput.Movement.ReadValue<Vector2>();
+        public Vector2 CameraLook => _gameInputAction.GameInput.CameraLook.ReadValue<Vector2>();
+        public bool Run => _gameInputAction.GameInput.Run.phase == InputActionPhase.Performed;
+    
+        public bool Climb => _gameInputAction.GameInput.Climb.triggered;
+    
+        public bool Grab => _gameInputAction.GameInput.Grab.triggered;
+    
+        public bool LAttack => _gameInputAction.GameInput.LAttack.triggered;
+    
+        public bool RAttack => _gameInputAction.GameInput.RAttack.triggered;
+    
+        public bool TakeOut => _gameInputAction.GameInput.TakeOut.triggered;
+        //按住
+        public bool Parry => _gameInputAction.GameInput.Parry.phase == InputActionPhase.Performed;
+
+        public bool ExecuteParry => _gameInputAction.GameInput.Parry.triggered;
+    
+        public bool LockEnemy => _gameInputAction.GameInput.LockEnemy.triggered;
+    
+    
+    
+        protected override void Awake()
         {
-            _gameInputAction = new GameInputAction();
+            if (_gameInputAction == null)
+            {
+                _gameInputAction = new GameInputAction();
+            }
         }
-    }
     
-    private void OnEnable()
-    {
-        _gameInputAction.Enable();
-    }
+        private void OnEnable()
+        {
+            _gameInputAction.Enable();
+        }
 
-    private void OnDisable()
-    {
-        _gameInputAction.Disable();
-    }
+        private void OnDisable()
+        {
+            _gameInputAction.Disable();
+        }
 
+    }
 }
